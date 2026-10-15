@@ -139,7 +139,6 @@ link_parents(people[5], people[2], people[3]);
 link_parents(people[6], people[4], people[5]);
 
    print_family_relationships(people[6]);
-    }
 
 
 free_family_tree(people, 7);
