@@ -45,6 +45,51 @@ void read_person_info(const char *role, char *name_out, int *age_out) {
 }
 
 
+void link_parents(Person *child, Person *father, Person *mother) {
+
+    child->father = father;
+
+    child->mother = mother;
+
+}
+
+
+void print_family_relationships(const Person *me) {
+
+    printf("\n=== FAMILY TREE RELATIONSHIPS ===\n");
+
+    printf("\n1. YOURSELF:\n");
+    printf("Name: %s | Age: %d\n",
+           me->name, me->age);
+
+    printf("\n2. PARENTS:\n");
+    printf("Father: %s | Age: %d\n",
+           me->father->name, me->father->age);
+
+    printf("Mother: %s | Age: %d\n",
+           me->mother->name, me->mother->age);
+
+    printf("\n3. PATERNAL GRANDPARENTS:\n");
+
+    printf("Grandfather: %s | Age: %d\n",
+           me->father->father->name,
+           me->father->father->age);
+
+    printf("Grandmother: %s | Age: %d\n",
+           me->father->mother->name,
+           me->father->mother->age);
+
+    printf("\n4. MATERNAL GRANDPARENTS:\n");
+
+    printf("Grandfather: %s | Age: %d\n",
+           me->mother->father->name,
+           me->mother->father->age);
+
+    printf("Grandmother: %s | Age: %d\n",
+           me->mother->mother->name,
+           me->mother->mother->age);
+}
+
 
 int main(void) {
 
@@ -76,11 +121,13 @@ int main(void) {
         }
     }
 
-    printf("\n=== FAMILY MEMBERS ===\n");
+link_parents(people[4], people[0], people[1]);
 
-    for (int i = 0; i < 7; i++) {
-        printf("%s: %s | Age: %d\n",
-               roles[i], people[i]->name, people[i]->age);
+link_parents(people[5], people[2], people[3]);
+
+link_parents(people[6], people[4], people[5]);
+
+   print_family_relationships(people[6]);
     }
 
     for (int i = 0; i < 7; i++) {
